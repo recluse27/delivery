@@ -1,10 +1,4 @@
-from flask import Flask, request, redirect, render_template, url_for
-
-app = Flask(__name__)
-
-
-form = """
-<!DOCTYPE HTML>
+﻿<!DOCTYPE HTML>
 
 <html>
 	<head>
@@ -91,8 +85,15 @@ form = """
 	</style>
 	
 	<body>
+	  <!--
+		<header>
+			<img src="img/logo.png" alt="logo" />
+			<h1>Delivery Panel</h1>
+			<h1><img src="img/logo.png" alt="logo"/><center> Delivery Control Panel </center></h1>
+		</header>
+	-->
 		<div class="page-header">
-			<img src="static/logo.jpg" alt="logo" />
+			<img src="C:\Users\User\PycharmProjects\druziwaiter\static\logo.jpg" alt="logo" />
 			<h1>Delivery Panel 
 				<br><small>Facebook FoodBot</small></h1>
 		</div>
@@ -101,7 +102,7 @@ form = """
 			<form action="/delivery" method="post">
 
 	  			<input type="text" class="form-control mb-2 mr-sm-2" onkeypress="return isNumberKey(event)" name="orderid" placeholder="Код заказа">
-	  			<button type="submit" class="btn btn-primary mb-2">Submit</button><br>
+	  			<button type="submit" class="btn btn-primary mb-2" onclick=alert('Hello!')>Submit</button><br>
 
 				Название в меню: <input type="text" class="form-control" name="name" disabled><br>
 				Номер заказа: <input type="text" class="form-control" name="ordernum" disabled><br>
@@ -120,28 +121,3 @@ form = """
 	  
 	</body>
 </html>
-"""
-
-
-@app.route('/')
-def index():
-    return form
-
-
-@app.route('/delivery', methods=['POST'])
-def delivery():
-    orderid = request.form.get('orderid')
-    request.form['name'] = "Cake"
-    request.form['ordernum'] = "12345"
-    request.form['orderdate'] = "12/12/2017"
-    request.form['cost'] = "123"
-    request.form['takedate'] = "01/12/2017"
-    request.form['sel1'] = "Done"
-
-    print(orderid)
-    # return render_template(form)
-    # return render_template('index.html')
-    return redirect(url_for("index"))
-
-if __name__ == '__main__':
-    app.run()
