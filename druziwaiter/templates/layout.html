@@ -93,13 +93,17 @@
 		</header>
 	-->
 		<div class="page-header">
-			<img src="C:\Users\User\PycharmProjects\druziwaiter\static\logo.jpg" alt="logo" />
+			<img src="static\logo.jpg" alt="logo" />
 			<h1>Delivery Panel
 				<br><small>Facebook FoodBot</small></h1>
 		</div>
 
 		<center>
-            { % block body % }{ % endblock % }
+            <div class="content">
+
+                {%block content %}{% endblock %}
+
+            </div>
 		</center>
 
 	</body>

@@ -125,23 +125,28 @@ form = """
 
 @app.route('/')
 def index():
-    return form
+    # return form
+    return render_template('index.html')
 
 
-@app.route('/delivery', methods=['POST'])
+@app.route('/delivery', methods=['POST', 'GET'])
 def delivery():
-    orderid = request.form.get('orderid')
-    request.form['name'] = "Cake"
-    request.form['ordernum'] = "12345"
-    request.form['orderdate'] = "12/12/2017"
-    request.form['cost'] = "123"
-    request.form['takedate'] = "01/12/2017"
-    request.form['sel1'] = "Done"
+    if request.method == 'GET':
+        return render_template('index.html')
 
-    print(orderid)
-    # return render_template(form)
-    # return render_template('index.html')
-    return redirect(url_for("index"))
+    elif request.method == 'POST':
+        orderid = request.form.get('orderid')
+        request.form['name'] = "Cake"
+        request.form['ordernum'] = "12345"
+        request.form['orderdate'] = "12/12/2017"
+        request.form['cost'] = "123"
+        request.form['takedate'] = "01/12/2017"
+        request.form['sel1'] = "Done"
+
+        print(orderid)
+        # return render_template(form)
+        # return render_template('index.html')
+        return redirect(url_for("index"))
 
 if __name__ == '__main__':
     app.run()
