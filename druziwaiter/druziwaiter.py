@@ -105,9 +105,9 @@ form = """
 
 				Название в меню: <input type="text" class="form-control" name="name" disabled><br>
 				Номер заказа: <input type="text" class="form-control" name="ordernum" disabled><br>
-				Дата заказа: <input type="date" class="form-control" name="orderdate" disabled><br>
+				Дата заказа: <input type="datetime-local" class="form-control" name="orderdate" disabled><br>
 				Сумма заказа: <input type="text" class="form-control" name="cost" disabled><br>
-				Дата выдачи: <input type="date" class="form-control" name="takedate" disabled><br>
+				Дата выдачи: <input type="datetime-local" class="form-control" name="takedate" disabled><br>
 				
 				<label for="sel1">Статус заказа:</label>
 				<select class="form-control" id="sel1">
@@ -131,22 +131,29 @@ def index():
 
 @app.route('/delivery', methods=['POST', 'GET'])
 def delivery():
+    print('fff')
     if request.method == 'GET':
+        print("!!!")
         return render_template('index.html')
 
     elif request.method == 'POST':
         orderid = request.form.get('orderid')
-        request.form['name'] = "Cake"
-        request.form['ordernum'] = "12345"
-        request.form['orderdate'] = "12/12/2017"
-        request.form['cost'] = "123"
-        request.form['takedate'] = "01/12/2017"
-        request.form['sel1'] = "Done"
+        # orderid = request.form['orderid']
+
+        name = "Cake"
+        ordernum = 12345
+        orderdate = "2017-12-12T08:30"
+        cost = 123
+        takedate = "2018-12-01T18:12"
+        status = "Done"
 
         print(orderid)
         # return render_template(form)
         # return render_template('index.html')
-        return redirect(url_for("index"))
+        # return redirect(url_for('index'))
+        return render_template('index.html', orderid=orderid, name=name, ordernum=ordernum, orderdate=orderdate,
+                               cost=cost, takedate=takedate, status=status)
+
 
 if __name__ == '__main__':
     app.run()

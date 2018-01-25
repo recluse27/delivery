@@ -15,7 +15,7 @@
 	  <![endif]-->
 	  	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
 
-		<script>
+		<script language="JavaScript">
 			function isNumberKey(evt)
 			{
 				var charCode = (evt.which) ? evt.which : evt.keyCode;
@@ -24,6 +24,18 @@
 				return false;
 				return true;
 			}
+			
+			function checkStatus(element) {
+                if (element.options[element.selectedIndex].text == "Done"){
+                    document.getElementById('status').disabled = false;
+                    document.getElementsByClassName("btn btn-danger").disabled = true;
+                }
+                else{
+                    document.getElementById('status').disabled = true;
+                    document.getElementsByClassName("btn btn-danger").disabled = false;
+                }
+            }
+
 		</script>
 
 	</head>
@@ -93,7 +105,7 @@
 		</header>
 	-->
 		<div class="page-header">
-			<img src="static\logo.jpg" alt="logo" />
+			<img src="static/logo.jpg" alt="logo" />
 			<h1>Delivery Panel
 				<br><small>Facebook FoodBot</small></h1>
 		</div>
