@@ -2,20 +2,22 @@
 
 {% block content %}
 <form action="/delivery" method="post">
-    <input type="text" class="form-control mb-2 mr-sm-2" onkeypress="return isNumberKey(event)" name="orderid" placeholder="Код заказа">
-    <button type="submit" class="btn btn-primary mb-2" onclick=alert('Hello!')>Submit</button><br>
+    <input type="text" class="form-control mb-2 mr-sm-2" onkeypress="return isNumberKey(event)" name="orderid" placeholder="Код заказа" value= {{ orderid }}>
+    <button type="submit" class="btn btn-primary mb-2">Submit</button><br>
 
-    Название в меню: <input type="text" class="form-control" name="name" disabled><br>
-    Номер заказа: <input type="text" class="form-control" name="ordernum" disabled><br>
-    Дата заказа: <input type="date" class="form-control" name="orderdate" disabled><br>
-    Сумма заказа: <input type="text" class="form-control" name="cost" disabled><br>
-    Дата выдачи: <input type="date" class="form-control" name="takedate" disabled><br>
+    Название в меню: <input type="text" class="form-control" name="name" value="{{ name }}" disabled><br>
+    Номер заказа: <input type="text" class="form-control" name="ordernum" value="{{ ordernum }}" disabled><br>
+    Дата заказа: <input type="datetime-local" class="form-control" name="orderdate" value="{{ orderdate }}" disabled><br>
+    Сумма заказа: <input type="text" class="form-control" name="cost" value="{{ cost }}" disabled><br>
+    Дата выдачи: <input type="datetime-local" class="form-control" name="takedate" value="{{ takedate }}" disabled><br>
 
     <label for="sel1">Статус заказа:</label>
-    <select class="form-control" id="sel1">
+    <select class="form-control" name="status" id="status" onChange="checkStatus(this);">
         <option>Active</option>
         <option>Done</option>
-    </select>
+    </select><br>
+
+    <button type="button" style="position: relative;" class="btn btn-danger" disabled>Recall</button>
 
 </form>
 {% endblock %}
